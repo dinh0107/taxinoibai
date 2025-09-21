@@ -1,0 +1,553 @@
+﻿@using taxinoibai.Models
+@model taxinoibai.ViewModel.HomeViewModel
+@{
+    var config = (ConfigSite)HttpContext.Current.Application["ConfigSite"];
+    ViewBag.Title = config.Title;
+    ViewBag.Description = config.Description;
+    ViewBag.Canonical = Request.Url?.GetLeftPart(UriPartial.Authority) + Url.Action("Index");
+    var share = config.ImageShare ?? config.Image;
+    if (share != null)
+    {
+        ViewBag.ImageShare = Request.Url?.GetLeftPart(UriPartial.Authority) + Path.Combine("/images/configs/", share);
+    }
+
+
+}
+
+<section class="banner" id="form">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-booking">
+                    <form action="" method="post">
+                        <div class="form-title">
+                            <i class="fas fa-plane"></i>  Sân bay
+                        </div>
+                        <hr class="text-white" />
+                        <div class="position-relative">
+                            <div class="group-input">
+                                <div class="right-form">
+                                    <img src="~/Content/images/diem_di.png" width="15" height="15" alt="Điểm đi" />
+                                    <span>Điểm đi</span>
+                                </div>
+                                <div class="left-form">
+                                    <input type="text" placeholder="Điểm đi" id="diemDi"/>
+                                </div>
+                            </div>
+                            <div class="revert">
+                                <i class="far fa-sync"></i>
+                            </div>
+                            <div class="group-input">
+                                <div class="right-form">
+                                    <img src="~/Content/images/diem_den.png" width="15" height="15" alt="Điểm đi" />
+                                    <span>Điểm đến</span>
+                                </div>
+                                <div class="left-form">
+                                    <input type="text" placeholder="Điểm đến" value="Nội bài" id="diemDen" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-6">
+                                <label class="custom-checkbox">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    <span class="label-text">Hai chiều</span>
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <label class="custom-checkbox">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    <span class="label-text">Hóa đơn</span>
+                                </label>
+
+                            </div>
+                        </div>
+                        <hr class="text-white" />
+                        <div class="row cus-row">
+                            <div class="col-lg-6">
+                                <div class="option-item">
+                                    <div class="opiton-name">
+                                        Loại xe
+                                    </div>
+                                    <select name="">
+                                        <option value="Xe 4 chỗ">Xe 4 chỗ</option>
+                                        <option value="Xe 7 chỗ">Xe 7 chỗ</option>
+                                        <option value="Xe 16 chỗ">Xe 16 chỗ</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="option-item">
+                                    <div class="opiton-name">
+                                        Điểm dừng
+                                    </div>
+                                    <span style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#stopModal" id="stopCount">0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row cus-row mt-3">
+                            <div class="col-6">
+                                <div class="time-form">
+                                    <input type="datetime-local" placeholder="Thời gian đón" name="name" value="" class="w-100" />
+                                    @*<img src="~/Content/images/tgian_don.png" width="15" height="15" alt="Alternate Text" />*@
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="time-form">
+                                    <input type="text" placeholder="Thời gian chờ" name="name" value="" />
+                                    <img src="~/Content/images/tgian_cho.png" width="15" height="15" alt="Alternate Text" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-4">
+                            <button class="btn btn-submit">kiểm tra giá <i class="fal fa-chevron-circle-right"></i></button>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="stopModal" tabindex="-1" aria-labelledby="stopModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="stopModalLabel">Thêm điểm dừng</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Container chứa các input điểm dừng -->
+                                        <div id="stopPointsContainer">
+                                            <input type="text" class="form-control mb-2" placeholder="Điểm dừng 1">
+                                        </div>
+                                        <button type="button" id="btnAddStop" class="btn btn-success w-100">+ Thêm điểm dừng</button>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" id="btnClearStops" class="btn btn-danger">Xóa tất cả</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                        <button type="button" id="btnConfirmStops" class="btn btn-primary">Đồng ý</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="slide-banner">
+                    @foreach (var item in Model.Banners.Where(a => a.GroupId == 1))
+                    {
+                        <a href="@item.Url">
+                            @if (item?.Image != null)
+                            {
+                                <img src="~/Content/images/img-main/base64.gif" data-src="@Url.Content("~/images/banners/" + item.Image)" alt="@item.BannerName" class="lazyload" />
+                            }
+                        </a>
+                    }
+                </div>
+                <div class="seeding">
+                   @foreach(var item in Model.Bookings)
+                    {
+                        <div class="seeding-item d-flex">
+                            <div class="seeding-text">
+                                Khách hàng <span>@item.CustomerName</span> @item.Service (@item.Phone)
+                            </div>
+                            <div class="seeding-price">
+                              @item.Price
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="page-section">
+    <h2 class="title">bảng giá xe đi Hà Nội - Nội Bài </h2>
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <div class="btn-group filer-btn" role="group" aria-label="Basic example">
+                <button type="button" id="btn-4cho" class="btn active">4 chỗ</button>
+                <button type="button" id="btn-7cho" class="btn ">7 chỗ</button>
+                <button type="button" id="btn-16cho" class="btn">16 chỗ</button>
+                <button type="button" id="btn-29cho" class="btn">29 chỗ</button>
+                <button type="button" id="btn-45cho" class="btn">45 chỗ</button>
+            </div>
+        </div>
+        <div class="box-price">
+            <table id="priceTable" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Hành trình</th>
+                        <th id="priceHeader">Giá</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <table class="table table-bordered" id="myTable">
+                <thead class="header-tb">
+                    <tr>
+                        <td scope="col">Hành trình</td>
+                        <td scope="col">4 chỗ</td>
+                        <td scope="col">7 chỗ</td>
+                        <td scope="col">16 chỗ</td>
+                        <td scope="col">29 chỗ</td>
+                        <td scope="col">45 chỗ</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row">Nội - Sơn La</td>
+                        <td>2.376.000 đ</td>
+                        <td>2.772.000 đ</td>
+                        <td>4.752.000 đ</td>
+                        <td>4.752.000 đ</td>
+                        <td>4.752.000 đ</td>
+                    </tr>
+                    <tr>
+                        <td>Hà Nội - Điện Biên</td>
+                        <td>5.232.000 đ</td>
+                        <td>6.104.000 đ</td>
+                        <td>10.464.000 đ</td>
+                        <td>Liên hệ</td>
+                        <td>Liên hệ</td>
+                    </tr>
+                    <tr>
+                        <td>Hà Nội - Lai Châu</td>
+                        <td>5.364.000 đ</td>
+                        <td>6.258.000 đ</td>
+                        <td>10.728.000 đ</td>
+                        <td>Liên hệ</td>
+                        <td>Liên hệ</td>
+                    </tr>
+                    <tr>
+                        <td>Hà Nội - Lào Cai</td>
+                        <td>3.492.000 đ</td>
+                        <td>4.074.000 đ</td>
+                        <td>6.984.000 đ</td>
+                        <td>Liên hệ</td>
+                        <td>Liên hệ</td>
+                    </tr>
+                    <tr>
+                        <td>Hà Nội - Yên Bái</td>
+                        <td>1.920.000 đ</td>
+                        <td>2.240.000 đ</td>
+                        <td>3.840.000 đ</td>
+                        <td>Liên hệ</td>
+                        <td>Liên hệ</td>
+                    </tr>
+                    <tr>
+                        <td>Hà Nội - Phú Thọ</td>
+                        <td>1.224.000 đ</td>
+                        <td>1.428.000 đ</td>
+                        <td>2.448.000 đ</td>
+                        <td>Liên hệ</td>
+                        <td>Liên hệ</td>
+                    </tr>
+                    <tr>
+                        <td>Hà Nội - Hà Giang</td>
+                        <td>3.564.000 đ</td>
+                        <td>4.158.000 đ</td>
+                        <td>7.128.000 đ</td>
+                        <td>Liên hệ</td>
+                        <td>Liên hệ</td>
+                    </tr>
+                    <tr>
+                        <td>Hà Nội - Tuyên Quang</td>
+                        <td>1.752.000 đ</td>
+                        <td>2.044.000 đ</td>
+                        <td>3.504.000 đ</td>
+                        <td>Liên hệ</td>
+                        <td>Liên hệ</td>
+                    </tr>
+                    <tr>
+                        <td>Hà Nội - Cao Bằng</td>
+                        <td>3.420.000 đ</td>
+                        <td>3.990.000 đ</td>
+                        <td>6.840.000 đ</td>
+                        <td>Liên hệ</td>
+                        <td>Liên hệ</td>
+                    </tr>
+                    <tr>
+                        <td>Hà Nội - Thái Nguyên</td>
+                        <td>1.080.000 đ</td>
+                        <td>1.260.000 đ</td>
+                        <td>2.160.000 đ</td>
+                        <td>Liên hệ</td>
+                        <td>Liên hệ</td>
+                    </tr>
+                    <tr>
+                        <td>Hà Nội - Lạng Sơn</td>
+                        <td>1.932.000 đ</td>
+                        <td>2.254.000 đ</td>
+                        <td>3.864.000 đ</td>
+                        <td>Liên hệ</td>
+                        <td>Liên hệ</td>
+                    </tr>
+                    <tr class="hot">
+                        <td>Hà Nội - Quảng Ninh <img src="~/Content/images/hot-gif.gif" width="30" height="30" alt="Hot" /></td>
+                        <td>1.884.000 đ</td>
+                        <td>2.198.000 đ</td>
+                        <td>3.768.000 đ</td>
+                        <td>Liên hệ</td>
+                        <td>Liên hệ</td>
+                    </tr>
+                    <tr>
+                        <td>Hà Nội - Hải Phòng</td>
+                        <td>1.500.000 đ</td>
+                        <td>1.750.000 đ</td>
+                        <td>3.000.000 đ</td>
+                        <td>Liên hệ</td>
+                        <td>Liên hệ</td>
+                    </tr>
+                    <tr>
+                        <td>Hà Nội - Nam Định</td>
+                        <td>1.020.000 đ</td>
+                        <td>1.190.000 đ</td>
+                        <td>2.040.000 đ</td>
+                        <td>Liên hệ</td>
+                        <td>Liên hệ</td>
+                    </tr>
+                    <tr>
+                        <td>Hà Nội - Thái Bình</td>
+                        <td>1.260.000 đ</td>
+                        <td>1.470.000 đ</td>
+                        <td>2.520.000 đ</td>
+                        <td>Liên hệ</td>
+                        <td>Liên hệ</td>
+                    </tr>
+                    <tr>
+                        <td>Hà Nội - Ninh Bình</td>
+                        <td>1.140.000 đ</td>
+                        <td>1.330.000 đ</td>
+                        <td>2.280.000 đ</td>
+                        <td>Liên hệ</td>
+                        <td>Liên hệ</td>
+                    </tr>
+                    <tr>
+                        <td>Hà Nội - Thanh Hóa</td>
+                        <td>2.016.000 đ</td>
+                        <td>2.352.000 đ</td>
+                        <td>4.032.000 đ</td>
+                        <td>Liên hệ</td>
+                        <td>Liên hệ</td>
+                    </tr>
+                    <tr>
+                        <td>Hà Nội - Nghệ An</td>
+                        <td>4.140.000 đ</td>
+                        <td>4.830.000 đ</td>
+                        <td>8.280.000 đ</td>
+                        <td>Liên hệ</td>
+                        <td>Liên hệ</td>
+                    </tr>
+                    <tr>
+                        <td>Hà Nội - Hà Tĩnh</td>
+                        <td>4.128.000 đ</td>
+                        <td>4.816.000 đ</td>
+                        <td>8.256.000 đ</td>
+                        <td>Liên hệ</td>
+                        <td>Liên hệ</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-center pb-2">
+                <div id="show-more-table" class="btn-color">
+                    xem bảng giá đầy đủ
+                    <div class="box-icon">
+                        <i class="far fa-long-arrow-right"></i>
+                    </div>
+                </div>
+                <a href="@config.Hotline" id="show-call-table" class="btn-color">
+                    Nhận báo giá chính xác
+                </a>
+            </div>
+        </div>
+        <div class="note mt-3">
+            <small><strong>Ghi chú:</strong></small>
+            <ul class="px-3">
+                <li><small>Giá trên đã bao gồm xăng dầu, lương lái xe, cầu đường quốc lộ, bến bãi</small></li>
+                <li><small>Giá chưa gồm thuế VAT8%</small></li>
+                <li><small>Giá trên có thể thay đổi theo từng thời điểm ( sự thay đổi giá nhiên liệu, hoặc tùy theo hành trình thuê xe của khách hàng)</small></li>
+                <li><small>Giá trên chưa bao gồm phí lưu đêm của xe ( nếu có ) </small></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="page-section">
+    <div class="container">
+        <h2 class="title">Tại sao nên chọn dịch vụ của chúng tôi?</h2>
+
+        <div class="box-info">
+            @foreach (var item in Model.Banners.Where(a => a.GroupId == 2))
+            {
+                <div class="info-item">
+                    <p>@item.BannerName</p>
+                    <span>@item.Slogan</span>
+                </div>
+            }
+            <div class="text-center">
+                @if (config.AboutImage != null)
+                {
+                    <img src="~/Content/images/img-main/base64.gif" data-src="@Url.Content("~/images/configs/" + config.AboutImage)" class="lazyload" />
+                }
+            </div>
+        </div>
+        <div class="three">
+            <div class="white-top">
+                <div class="oval"></div>
+            </div>
+            Cam kết xe riêng - Chuẩn lịch đón - Tài xế lịch sự - Lái xe an toàn
+        </div>
+    </div>
+</section>
+<section class="page-section bg-light">
+    <div class="container">
+        <h2 class="title">TAXI NỘI BÀI HÀ NỘI 1 CHIỀU, 2 CHIỀU</h2>
+        @{
+            var services = Model.Articles
+                .Where(a => a.ArticleCategory.TypePost == TypePost.Service)
+                .ToList();
+
+            int mainCount = 1; // bài chính ở đầu
+            int subCount = 5;  // số bài phụ
+            int blockSize = mainCount + subCount;
+        }
+
+        <div class="row">
+            @for (int i = 0; i < 3; i++) // 3 cột
+            {
+                var offset = i * blockSize;
+                var mainItem = services.Skip(offset).Take(mainCount).FirstOrDefault();
+                var subItems = services.Skip(offset + mainCount).Take(subCount);
+
+                <div class="col-lg-4 col-sm-6">
+                    <div class="way">
+                        @if (mainItem != null)
+                        {
+                            <div class="img">
+                                <a class="c-img" href="@Url.Action("ArticleDetail", new { url = mainItem.Url })" title="@mainItem.Subject">
+                                    @if (mainItem.Image != null)
+                                    {
+                                        <img class="lazyload" data-src="@Path.Combine("/images/articles/", mainItem.Image)" src="~/Content/images/img-main/base64.gif" alt="@mainItem.Subject">
+                                    }
+                                </a>
+                                <h3 class="title-a">@mainItem.Subject</h3>
+                            </div>
+                        }
+
+                        <div class="ct">
+                            @foreach (var item in subItems)
+                            {
+                                <p>
+                                    <a href="@Url.Action("ArticleDetail", new {url = item.Url})" class="name">@item.Subject</a>
+                                    <a class="price" href="#form">Đặt xe</a>
+                                </p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</section>
+
+<section class="page-section overflow-hidden">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 pt-5">
+                <h2 class="title">Khách hàng đánh giá chúng tôi ra sao ? </h2>
+                <div class="slide-fb">
+                    @foreach (var item in Model.Banners.Where(a => a.GroupId == 5))
+                    {
+                        <div class="item">
+                            <div class="info flex-column align-items-center">
+                                <img data-src="@Path.Combine("/images/banners/", item.Image)" alt="@item.BannerName" class="lazyload" src="~/Content/images/img-main/base64.gif">
+                                <p class="name">@item.BannerName</p>
+                                <div class="info">@item.Slogan</div>
+                            </div>
+                            <p>@Html.Raw(item.Content)</p>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="faq-container">
+                    <h2 class="md-title text-center white">Câu hỏi thường gặp</h2>
+                    <div class="faq-box mt-3">
+                        @foreach (var item in Model.Banners.Where(a => a.GroupId == 4))
+                        {
+                            <div class="faq-row">
+                                <div class="faq-item">
+                                    <p class="q">@item.BannerName</p>
+                                    <div class="btn-toggle">
+                                        <i class="fa fa-chevron-down"></i>
+                                    </div>
+                                </div>
+                                <p class="a mt-3" style="display: none; font-size:14px">
+                                    @item.Slogan
+                                </p>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="page-section bg-light">
+    <div class="container">
+        <h2 class="title">KINH NGHIỆM ĐẶT TAXI NỘI BÀI ĐI SÂN BAY</h2>
+        <div class="row">
+            @foreach (var item in Model.Articles.Where(a => a.ArticleCategory.TypePost == TypePost.Article))
+            {
+                <div class="col-lg-3 col-6">
+                    <div class="p-post">
+                        @if (item.Image != null)
+                        {
+                            <a href="@Url.Action("ArticleDetail", new {url = item.Url})">
+                                <img src="@Path.Combine("/images/articles/", item.Image)" alt="@item.Subject" />
+                                <span>@item.Subject</span>
+                            </a>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+@section scripts{
+    <script>
+        homeJs();
+        $('.seeding').slick({
+            vertical: true,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 5000,
+            arrows: false
+        });
+
+        $(function () {
+            $('.faq-box').on('click', '.faq-item', function () {
+                const $row = $(this).closest('.faq-row');
+                const $answer = $row.find('.a');
+                const $icon = $(this).find('.fa');
+
+                // đóng tất cả trước (nếu muốn accordion chỉ mở 1 cái)
+                // $('.faq-box .a').not($answer).slideUp();
+                // $('.faq-box .fa').not($icon).removeClass('fa-chevron-up').addClass('fa-chevron-down');
+
+                // toggle câu trả lời
+                $answer.slideToggle();
+
+                // đổi icon
+                $icon.toggleClass('fa-chevron-down fa-chevron-up');
+            });
+        });
+
+    </script>
+}

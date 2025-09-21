@@ -1,0 +1,147 @@
+﻿@model taxinoibai.ViewModel.HeaderViewModel
+@using taxinoibai.Models;
+@{
+    var config = (ConfigSite)HttpContext.Current.Application["ConfigSite"];
+}
+
+<header>
+    <div class="header-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-4 d-lg-none d-block">
+                    <div class="d-flex text-right w-100 justify-content-start align-items-center col-4">
+                        <div class="mobile-btn text-dark" onclick="show()">
+                            <i class="fas fa-bars"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-4">
+                    <a href="/">
+                        @if (config?.Image != null)
+                        {
+                            <img src="@Url.Content("~/images/configs/" + config.Image)" alt="@config.Title" class="logo" />
+                        }
+                    </a>
+                </div>
+                <div class="col-lg-6 text-end d-lg-block d-none">
+                    <div class="hotline">
+                        <span>Hotline</span>
+                        <a href="tel:@config.Hotline">@config.Hotline</a>
+                    </div>
+                </div>
+                <div class="col-4 d-lg-none d-block">
+                    <div class="d-flex text-right w-100 justify-content-end align-items-center">
+                        <a href="tel@config.Hotline" class="hotline-mobie">
+                            <i class="fa-solid fa-phone-flip fa-rotate-90"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-header">
+        <div class="container">
+            <ul class="ul-reset ul-main">
+                <li class="li-menu"><a href="/">Trang chủ</a></li>
+                @foreach (var item in Model.ArticleCategories.Where(a => a.ParentId == null).Take(1))
+                {
+                    <li class="li-menu">
+                        <a href="@Url.Action("ArticleCategory", new {url = item.Url})">@item.CategoryName</a>
+                        @if (Model.ArticleCategories.Any(a => a.ParentId == item.Id))
+                        {
+                            <ul class="ul-reset sub-nav">
+                                @foreach (var subItem in Model.ArticleCategories.Where(a => a.ParentId == item.Id))
+                                {
+                                    <li class="li-submenu">
+                                        <a href="@Url.Action("ArticleCategory", new {url = subItem.Url})">@subItem.CategoryName</a>
+                                    </li>
+                                })
+                            </ul>
+                        }
+                    </li>
+                }
+                <li class="li-menu"><a href="/">Bảng giá</a></li>
+                @foreach (var item in Model.ArticleCategories.Skip(1).Where(a => a.ParentId == null))
+                {
+                    <li class="li-menu">
+                        <a href="@Url.Action("ArticleCategory", new {url = item.Url})">@item.CategoryName</a>
+                        @if (Model.ArticleCategories.Any(a => a.ParentId == item.Id))
+                        {
+                            <ul class="ul-reset sub-nav">
+                                @foreach (var subItem in Model.ArticleCategories.Where(a => a.ParentId == item.Id))
+                                {
+                                    <li class="li-submenu">
+                                        <a href="@Url.Action("ArticleCategory", new {url = subItem.Url})">@subItem.CategoryName</a>
+                                    </li>
+                                })
+                            </ul>
+                        }
+                    </li>
+                }
+                <li class="li-menu"><a href="@Url.Action("Contact")">Liên hệ</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+
+
+<div class="overflow" onclick="Close()">
+</div>
+
+<div class="header-mobile p-0 overflow-hidden">
+    <div class="row border-bottom p-2">
+        <div class="col-5">
+            <a href="/">
+                @if (config.Image != null)
+                {
+                    <img src="@Path.Combine("/images/configs/", config.Image)" alt="@config.Title" class="logo logo-mb">
+                }
+            </a>
+        </div>
+        <div class="col-7 text-right text-white d-flex align-items-center justify-content-end">
+            <div class="close-header" onclick="Close()"><i class="fas fa-times"></i></div>
+        </div>
+    </div>
+    <ul class="ul-reset ul-mb mt-4">
+        
+        @if (Model.ArticleCategories.Any(a => a.ParentId == null))
+        {
+            foreach (var item in Model.ArticleCategories.Where(a => a.ParentId == null))
+            {
+                var cat = Url.Action("ArticleCategory", "Home", new { url = item.Url });
+                if (item.Redirect)
+                {
+                    cat = item.Url;
+                }
+                <li class="li-mb">
+                    <div class="d-flex align-items-center justify-content-between p-2 mx-3">
+                        <a href="@cat">@item.CategoryName</a>
+                        @if (Model.ArticleCategories.Any(a => a.ParentId == item.Id))
+                        {
+                            <i class="fas fa-caret-down"></i>
+                        }
+                    </div>
+                    @if (Model.ArticleCategories.Any(a => a.ParentId == item.Id))
+                    {
+                        <ul>
+                            @foreach (var child in Model.ArticleCategories.Where(a => a.ParentId == item.Id))
+                            {
+                                var cat2 = Url.Action("ArticleCategory", "Home", new { url = child.Url });
+                                if (child.Redirect)
+                                {
+                                    cat2 = child.Url;
+                                }
+                                <li class="p-2">
+                                    <a class="mx-4" href="@cat2" @if (child.Redirect) { @Html.Raw(@Html.Raw("target='_blank'")) }>@child.CategoryName</a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                </li>
+            }
+
+        }
+
+    </ul>
+</div>
