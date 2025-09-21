@@ -1398,12 +1398,62 @@ footer h2 {
   display: none;
 }
 
+/* Header modal */
+.custom-modal-header {
+  background-color: #003366; /* xanh đậm */
+  color: #fff;
+}
+
+.custom-modal-header .modal-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Giá */
+.price-amount {
+  color: #ff6600; /* màu cam */
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* Input */
+.custom-modal .form-control {
+  border-radius: 6px;
+  padding: 0.6rem;
+  font-size: 0.95rem;
+}
+
+/* Nút hủy */
+.custom-btn-cancel {
+  background-color: #6c757d;
+  color: #fff;
+  min-width: 130px;
+}
+
+/* Nút xác nhận */
+.custom-btn-confirm {
+  background-color: #ff6600; /* cam */
+  color: #fff;
+  font-weight: 600;
+  min-width: 200px;
+}
+
+.custom-btn-confirm:hover {
+  background-color: #e65c00;
+}
+
 @media (max-width: 600px) {
   .main-header {
     display: none;
   }
   .header-top {
-    padding: 20px 0;
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: #fff;
   }
   .hotline-mobie {
     color: #fff;
@@ -1450,7 +1500,7 @@ footer h2 {
   .header-mobile {
     display: block;
     height: 100vh;
-    width: 50%;
+    width: 100%;
     background: #FF4605;
     position: fixed;
     right: -100%;
@@ -1530,7 +1580,14 @@ footer h2 {
     height: 200px;
   }
   .title {
-    font-size: 20px;
+    font-size: 18px;
+  }
+  .p-post span {
+    font-size: 14px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
   }
   .social-fix, .suntory-alo-phone {
     display: none;
@@ -1552,5 +1609,21 @@ footer h2 {
   }
   .slide-fb .item .name {
     font-size: 16px;
+  }
+  .info-item {
+    display: none;
+  }
+  .three {
+    font-size: 14px;
+  }
+  /* .time-form{
+      margin:0 auto;
+      width:322px;
+  }*/
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: #fff;
   }
 }

@@ -41,7 +41,15 @@ namespace taxinoibai.Controllers
                 ArticleCategories = ArticleCategories().Where(a => a.ShowMenu),
             };
             return PartialView(model);
+        
         }
+
+        public PartialViewResult Form()
+        {
+            return PartialView();
+        }
+
+
         [ChildActionOnly]
         public PartialViewResult Footer()
         {

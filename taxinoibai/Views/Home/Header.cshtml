@@ -8,14 +8,14 @@
     <div class="header-top">
         <div class="container">
             <div class="row">
-                <div class="col-4 d-lg-none d-block">
+                <div class="col-4 d-lg-none d-flex align-items-center">
                     <div class="d-flex text-right w-100 justify-content-start align-items-center col-4">
                         <div class="mobile-btn text-dark" onclick="show()">
-                            <i class="fas fa-bars"></i>
+                            <i class="fas fa-bars" style="font-size:20px;"></i>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-4">
+                <div class="col-lg-6 col-4 d-flex align-items-center">
                     <a href="/">
                         @if (config?.Image != null)
                         {
@@ -99,12 +99,21 @@
                 }
             </a>
         </div>
-        <div class="col-7 text-right text-white d-flex align-items-center justify-content-end">
+        <div class="col-7 text-right text-white d-flex align-items-center justify-content-end pr-5">
             <div class="close-header" onclick="Close()"><i class="fas fa-times"></i></div>
         </div>
     </div>
     <ul class="ul-reset ul-mb mt-4">
-        
+        <li class="li-mb">
+            <div class="p-2 mx-3">
+                <a href="/">Trang chủ</a>
+            </div>
+        </li>
+        <li class="li-mb">
+            <div class="p-2 mx-3">
+                <a href="/">Bảng giá</a>
+            </div>
+        </li>
         @if (Model.ArticleCategories.Any(a => a.ParentId == null))
         {
             foreach (var item in Model.ArticleCategories.Where(a => a.ParentId == null))
@@ -142,6 +151,10 @@
             }
 
         }
-
+        <li class="li-mb">
+            <div class="p-2 mx-3">
+                <a href="/lien-he">Liên hệ</a>
+            </div>
+        </li>
     </ul>
 </div>

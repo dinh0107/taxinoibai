@@ -1705,6 +1705,7 @@
     <Content Include="Views\Home\ArticleHot.cshtml" />
     <Content Include="Views\Home\ArticleDetail.cshtml" />
     <Content Include="taxinoibai.bak" />
+    <Content Include="Views\Home\Form.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

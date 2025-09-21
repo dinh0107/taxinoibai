@@ -1,0 +1,142 @@
+﻿<div class="form-booking">
+    <form action="" method="post">
+        <div class="form-title">
+            <i class="fas fa-plane"></i>  Sân bay
+        </div>
+        <hr class="text-white" />
+        <div class="position-relative">
+            <div class="group-input">
+                <div class="right-form">
+                    <img src="~/Content/images/diem_di.png" width="15" height="15" alt="Điểm đi" />
+                    <span>Điểm đi</span>
+                </div>
+                <div class="left-form">
+                    <input type="text" placeholder="Điểm đi" id="diemDi" />
+                </div>
+            </div>
+            <div class="revert">
+                <i class="far fa-sync"></i>
+            </div>
+            <div class="group-input">
+                <div class="right-form">
+                    <img src="~/Content/images/diem_den.png" width="15" height="15" alt="Điểm đi" />
+                    <span>Điểm đến</span>
+                </div>
+                <div class="left-form">
+                    <input type="text" placeholder="Điểm đến" value="Nội bài" id="diemDen" />
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-6">
+                <label class="custom-checkbox">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span class="label-text">Hai chiều</span>
+                </label>
+            </div>
+            <div class="col-6">
+                <label class="custom-checkbox">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span class="label-text">Hóa đơn</span>
+                </label>
+
+            </div>
+        </div>
+        <hr class="text-white" />
+        <div class="row cus-row">
+            <div class="col-lg-6">
+                <div class="option-item">
+                    <div class="opiton-name">
+                        Loại xe
+                    </div>
+                    <select name="">
+                        <option value="Xe 4 chỗ">Xe 4 chỗ</option>
+                        <option value="Xe 7 chỗ">Xe 7 chỗ</option>
+                        <option value="Xe 16 chỗ">Xe 16 chỗ</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="option-item">
+                    <div class="opiton-name">
+                        Điểm dừng
+                    </div>
+                    <span style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#stopModal" id="stopCount">0</span>
+                </div>
+            </div>
+        </div>
+        <div class="row cus-row mt-3 px-4">
+            <div class="col-6">
+                <div class="time-form">
+                    <input type="datetime-local" placeholder="Thời gian đón" name="name" value="" class="w-100" />
+                    @*<img src="~/Content/images/tgian_don.png" width="15" height="15" alt="Alternate Text" />*@
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="time-form">
+                    <input type="text" placeholder="Thời gian chờ" name="name" value="" />
+                    <img src="~/Content/images/tgian_cho.png" width="15" height="15" alt="Alternate Text" />
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <button type="button"
+                    class="btn btn-submit"
+                    data-bs-toggle="modal"
+                    data-bs-target="#confirmModal">
+                kiểm tra giá <i class="fal fa-chevron-circle-right"></i>
+            </button>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="stopModal" tabindex="-1" aria-labelledby="stopModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="stopModalLabel">Thêm điểm dừng</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Container chứa các input điểm dừng -->
+                        <div id="stopPointsContainer">
+                            <input type="text" class="form-control mb-2" placeholder="Điểm dừng 1">
+                        </div>
+                        <button type="button" id="btnAddStop" class="btn btn-success w-100">+ Thêm điểm dừng</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnClearStops" class="btn btn-danger">Xóa tất cả</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <button type="button" id="btnConfirmStops" class="btn btn-primary">Đồng ý</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Xác nhận thông tin -->
+        <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content custom-modal">
+                    <div class="modal-header custom-modal-header">
+                        <h5 class="modal-title" id="confirmModalLabel">
+                            <i class="fas fa-info-circle me-2"></i> XÁC NHẬN THÔNG TIN
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <p class="mb-2">Giá cước đã bao gồm phí ra, vào sân bay Nội Bài, chưa bao gồm phí cầu đường khác</p>
+                        <h3 class="price-amount mb-2"><span id="priceAmount">220,000</span>đ</h3>
+                        <p class="mb-3">Vui lòng đặt xe 45 phút trước giờ đón để đảm bảo giá này!</p>
+                        <hr>
+                        <p class="mb-2">Để lại số điện thoại của Quý khách, chúng tôi sẽ liên lạc lại ngay!</p>
+                        <input type="text" class="form-control mb-2" id="phoneInput" placeholder="Điện thoại">
+                        <input type="text" class="form-control mb-3" id="nameInput" placeholder="Họ và tên">
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="button" class="btn btn-secondary custom-btn-cancel" data-bs-dismiss="modal">Hủy</button>
+                        <button type="button" id="btnConfirmBooking" class="btn custom-btn-confirm">XÁC NHẬN ĐẶT CHUYẾN</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
