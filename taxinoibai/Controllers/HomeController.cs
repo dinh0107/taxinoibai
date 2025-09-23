@@ -1,7 +1,9 @@
-﻿using PagedList;
+﻿using Helpers;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.Mvc;
@@ -41,7 +43,7 @@ namespace taxinoibai.Controllers
                 ArticleCategories = ArticleCategories().Where(a => a.ShowMenu),
             };
             return PartialView(model);
-        
+
         }
 
         public PartialViewResult Form()
@@ -141,6 +143,63 @@ namespace taxinoibai.Controllers
         {
             return View();
         }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public JsonResult ContactForm(Contact model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json(new { status = false, msg = "Hãy điền đúng định dạng." });
+            }
+
+            model.CreateDate = DateTime.Now;
+            _unitOfWork.ContactRepository.Insert(model);
+            _unitOfWork.Save();
+
+            var subject = "Email liên hệ từ website: " + Request.Url?.Host;
+
+            var body = $@"
+                <table width='600' cellpadding='0' cellspacing='0' style='font-family:Arial,sans-serif;font-size:14px;color:#333;border:1px solid #e5e5e5;'>
+                  <tr>
+                    <td style='background:#007bff;color:#fff;padding:15px;text-align:center;font-size:18px;font-weight:bold;'>
+                      Liên hệ mới từ website {Request.Url?.Host}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style='padding:15px;'>
+                      <p><strong>Số điện thoại:</strong> {model.Mobile}</p>
+                      <p><strong>Điểm đi:</strong> {model.From}</p>
+                      <p><strong>Điểm đến:</strong> {model.To}</p>
+                      {(model.Twoways ? "<p><strong>2 chiều</strong></p>" : "")}
+                      {(model.Bill ? "<p><strong>Xuất hóa đơn</strong></p>" : "")}
+                      <p><strong>Loại xe:</strong> {model.TypeCar}</p>
+                      <p><strong>Điểm dừng:</strong> {model.StopPoints}</p>
+                      <p><strong>Thời gian đón:</strong> {model.PickUpTime.ToString("dd/MM/yyyy HH:mm")}</p>
+                      <p><strong>Thời gian về:</strong> {model.WaitingTime.ToString("dd/MM/yyyy HH:mm")}</p>
+                      <hr style='border:none;border-top:1px solid #e5e5e5;margin:15px 0;'/>
+                      <p style='font-size:12px;color:#888;'>Đây là hệ thống gửi email tự động, vui lòng không phản hồi lại email này.</p>
+                    </td>
+                  </tr>
+                </table>";
+
+            Task.Run(() => HtmlHelpers.SendEmail(
+                "gmail",
+                subject,
+                body,
+                ConfigSite.Email, // email gửi
+                Email,            // email nhận
+                Email,            // user
+                Password,         // pass
+                ConfigSite.Title  // tiêu đề site
+            ));
+
+            return Json(new
+            {
+                status = true,
+                msg = "Gửi liên hệ thành công.\nChúng tôi sẽ liên lạc lại với bạn sớm nhất có thể."
+            });
+        }
+
         public List<Booking> GetFakeBookings()
         {
             return new List<Booking>
@@ -156,6 +215,11 @@ namespace taxinoibai.Controllers
                 new Booking { CustomerName = "Anh Tuấn", Phone = "0974.xxx.765", Service = "vừa đặt xe đi Nội Bài", Price = "2.050.000đ" },
                 new Booking { CustomerName = "Ngọc Hân", Phone = "0922.xxx.888", Service = "vừa đặt xe đi Nội Bài", Price = "1.320.000đ" }
             };
+        }
+        protected override void Dispose(bool disposing)
+        {
+            _unitOfWork.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

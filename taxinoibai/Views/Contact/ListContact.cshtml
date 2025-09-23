@@ -72,10 +72,10 @@
                             <tr>
                                 <th style="width: 100px">Ngày gửi</th>
                                 <th style="width: 150px">Số điện thoại</th>
+                                <th>Họ tên</th>
                                 <th>Điểm đi</th>
                                 <th>Điểm đến</th>
-                                <th>Ngày đi</th>
-                                <th>Ngày về</th>
+                                <th>Giờ đón</th>
                                 <th style="width: 80px">Loại xe</th>
                                 <th>Trạng thái</th>
                                 <th style="width: 60px"></th>
@@ -91,15 +91,28 @@
                                             <strong>@contact.Mobile</strong>
                                         </a>
                                     </td>
+                                    <td>
+
+                                        @if (contact.Twoways)
+                                        {
+                                            @:Đặt 2 chiều
+                                            <br />
+                                            @: Thời gian về : @contact.WaitingTime.ToString("dd/MM/yyyy")
+                                        }
+                                        @if (contact.Bill)
+                                        {
+                                            @:Yêu cầu hóa đơn
+                                            <br />
+                                        }
+                                        @if (contact.StopPoints != null)
+                                        {
+                                            @:Điểm dừng : @contact.StopPoints
+                                        }
+                                    </td>
                                     <td>@contact.From</td>
                                     <td>@contact.To</td>
-                                    <td>@contact.FromDate.ToString("dd/MM/yyyy HH:mm")</td>
                                     <td>
-                                        @if (contact.ToDate != null)
-                                        {
-                                            var toDate = Convert.ToDateTime(contact.ToDate).ToString("dd/MM/yyyy HH:mm");
-                                            <span>@toDate</span>
-                                        }
+                                        @contact.PickUpTime.ToString("dd/MM/yyyy")
                                     </td>
                                     <td>@contact.TypeCar</td>
                                     <td>

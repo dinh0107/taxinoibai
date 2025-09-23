@@ -33,14 +33,16 @@
                     }
                 </div>
                 <div class="seeding">
-                   @foreach(var item in Model.Bookings)
+                    @foreach (var item in Model.Bookings)
                     {
-                        <div class="seeding-item d-flex">
-                            <div class="seeding-text">
-                                Khách hàng <span>@item.CustomerName</span> @item.Service (@item.Phone)
-                            </div>
-                            <div class="seeding-price">
-                              @item.Price
+                        <div>
+                            <div class="seeding-item d-flex">
+                                <div class="seeding-text">
+                                    Khách hàng <span>@item.CustomerName</span> @item.Service (@item.Phone)
+                                </div>
+                                <div class="seeding-price">
+                                    @item.Price
+                                </div>
                             </div>
                         </div>
                     }
@@ -247,7 +249,7 @@
                         <i class="far fa-long-arrow-right"></i>
                     </div>
                 </div>
-                <a href="@config.Hotline" id="show-call-table" class="btn-color">
+                <a href="@config.Zalo" id="show-call-table" class="btn-color">
                     Nhận báo giá chính xác
                 </a>
             </div>
@@ -356,8 +358,8 @@
                                 <img data-src="@Path.Combine("/images/banners/", item.Image)" alt="@item.BannerName" class="lazyload" src="~/Content/images/img-main/base64.gif">
                                 <p class="name">@item.BannerName</p>
                                 <div class="info">@item.Slogan</div>
+                                <div>@Html.Raw(item.Content)</div>
                             </div>
-                            <p>@Html.Raw(item.Content)</p>
                         </div>
                     }
                 </div>
@@ -408,9 +410,16 @@
         </div>
     </div>
 </section>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css"  />
 @section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" ></script>
     <script>
         homeJs();
+        autoComplate()
+        $('.datetimepicker').datetimepicker({
+            dateFormat: "D-M-Y H:i",
+            minDate: "today"
+        });
         $('.seeding').slick({
             vertical: true,
             slidesToShow: 4,

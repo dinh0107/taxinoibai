@@ -47,7 +47,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CKFinder">
-      <HintPath>..\..\..\..\Downloads\CKFinder.dll</HintPath>
+      <HintPath>..\..\..\CKFinder.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
@@ -56,7 +56,7 @@
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Helpers">
-      <HintPath>..\..\..\..\Downloads\Helpers.dll</HintPath>
+      <HintPath>..\..\..\Helpers.dll</HintPath>
     </Reference>
     <Reference Include="ImageResizer, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ImageResizer.4.2.8\lib\net45\ImageResizer.dll</HintPath>
@@ -148,6 +148,18 @@
     <Compile Include="Migrations\202509201646105_init.cs" />
     <Compile Include="Migrations\202509201646105_init.Designer.cs">
       <DependentUpon>202509201646105_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202509220344140_contact.cs" />
+    <Compile Include="Migrations\202509220344140_contact.Designer.cs">
+      <DependentUpon>202509220344140_contact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202509220356166_contact-edit.cs" />
+    <Compile Include="Migrations\202509220356166_contact-edit.Designer.cs">
+      <DependentUpon>202509220356166_contact-edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202509230508167_fix-contact.cs" />
+    <Compile Include="Migrations\202509230508167_fix-contact.Designer.cs">
+      <DependentUpon>202509230508167_fix-contact.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -281,6 +293,33 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\articles\2025\09\21\31e166fa-fa00-49a8-8e0a-25b77c4458c3-taxi-cau-giay-di-noi-bai-185.jpg" />
+    <Content Include="images\articles\2025\09\21\31e166fa-fa00-49a8-8e0a-25b77c4458c3-taxi-cau-giay-di-noi-bai-205.jpg" />
+    <Content Include="images\articles\2025\09\21\31e166fa-fa00-49a8-8e0a-25b77c4458c3-taxi-cau-giay-di-noi-bai-257.jpg" />
+    <Content Include="images\articles\2025\09\21\31e166fa-fa00-49a8-8e0a-25b77c4458c3-taxi-cau-giay-di-noi-bai-283.jpg" />
+    <Content Include="images\articles\2025\09\21\31e166fa-fa00-49a8-8e0a-25b77c4458c3-taxi-cau-giay-di-noi-bai-325.jpg" />
+    <Content Include="images\articles\2025\09\21\31e166fa-fa00-49a8-8e0a-25b77c4458c3-taxi-cau-giay-di-noi-bai-358.jpg" />
+    <Content Include="images\articles\2025\09\21\31e166fa-fa00-49a8-8e0a-25b77c4458c3-taxi-cau-giay-di-noi-bai-424.jpg" />
+    <Content Include="images\articles\2025\09\21\31e166fa-fa00-49a8-8e0a-25b77c4458c3-taxi-cau-giay-di-noi-bai-467.jpg" />
+    <Content Include="images\articles\2025\09\21\31e166fa-fa00-49a8-8e0a-25b77c4458c3-taxi-cau-giay-di-noi-bai-538.jpg" />
+    <Content Include="images\articles\2025\09\21\31e166fa-fa00-49a8-8e0a-25b77c4458c3-taxi-cau-giay-di-noi-bai-555.jpg" />
+    <Content Include="images\articles\2025\09\21\31e166fa-fa00-49a8-8e0a-25b77c4458c3-taxi-cau-giay-di-noi-bai-719.jpg" />
+    <Content Include="images\articles\2025\09\21\31e166fa-fa00-49a8-8e0a-25b77c4458c3-taxi-cau-giay-di-noi-bai-770.jpg" />
+    <Content Include="images\articles\2025\09\21\31e166fa-fa00-49a8-8e0a-25b77c4458c3-taxi-cau-giay-di-noi-bai-952.jpg" />
+    <Content Include="images\banners\2025\09\21\hongdiep-399.jpg" />
+    <Content Include="images\banners\2025\09\21\imageye-imgi-4-slider-1-tiny-488.jpg" />
+    <Content Include="images\banners\2025\09\21\imageye-imgi-5-slider-3-tiny-623.png" />
+    <Content Include="images\banners\2025\09\21\oanhnguyen-232.jpg" />
+    <Content Include="images\banners\2025\09\21\oanhnguyen-737.jpg" />
+    <Content Include="images\configs\2025\09\21\artldp2b-837-143.png" />
+    <Content Include="images\configs\2025\09\21\group-32-568.png" />
+    <Content Include="images\configs\2025\09\21\logo-nam-anh-goc-01-360-140.png" />
+    <Content Include="images\configs\2025\09\21\logo-nam-anh-goc-01-360-163.png" />
+    <Content Include="images\configs\2025\09\21\logo-nam-anh-goc-01-360-99.png" />
+    <Content Include="images\configs\2025\09\22\logo-taxinoibainet-122.png" />
+    <Content Include="images\configs\2025\09\22\logo-taxinoibainet-141.png" />
+    <Content Include="images\upload\images\logo-nam-anh-goc-01-360.png" />
+    <Content Include="images\upload\_thumbs\Images\logo-nam-anh-goc-01-360.png" />
     <Content Include="Scripts\aos.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -288,88 +327,11 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\ckeditor\CHANGES.md" />
-    <Content Include="Scripts\ckeditor\LICENSE.md" />
-    <Content Include="Scripts\ckeditor\plugins\accordionList\LICENSE" />
-    <Content Include="Scripts\ckeditor\plugins\accordionList\README.md" />
-    <Content Include="Scripts\ckeditor\plugins\base64image\LICENSE.md" />
-    <Content Include="Scripts\ckeditor\plugins\base64image\README.md" />
-    <Content Include="Scripts\ckeditor\plugins\btgrid\bower.json" />
-    <Content Include="Scripts\ckeditor\plugins\btgrid\README.md" />
-    <Content Include="Scripts\ckeditor\plugins\ckawesome\fontawesome\fonts\fontawesome-webfont.eot" />
-    <Content Include="Scripts\ckeditor\plugins\ckawesome\fontawesome\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Scripts\ckeditor\plugins\ckawesome\fontawesome\fonts\fontawesome-webfont.woff" />
-    <Content Include="Scripts\ckeditor\plugins\ckawesome\fontawesome\fonts\fontawesome-webfont.woff2" />
-    <Content Include="Scripts\ckeditor\plugins\ckawesome\fontawesome\fonts\FontAwesome.otf" />
-    <Content Include="Scripts\ckeditor\plugins\collapsibleItem\LICENSE" />
-    <Content Include="Scripts\ckeditor\plugins\collapsibleItem\README.md" />
-    <Content Include="Scripts\ckeditor\plugins\exportpdf\CHANGELOG.md" />
-    <Content Include="Scripts\ckeditor\plugins\exportpdf\LICENSE.md" />
-    <Content Include="Scripts\ckeditor\plugins\exportpdf\README.md" />
-    <Content Include="Scripts\ckeditor\plugins\exportpdf\tests\manual\configfilename.md" />
-    <Content Include="Scripts\ckeditor\plugins\exportpdf\tests\manual\emptyeditor.md" />
-    <Content Include="Scripts\ckeditor\plugins\exportpdf\tests\manual\integration.md" />
-    <Content Include="Scripts\ckeditor\plugins\exportpdf\tests\manual\integrations\easyimage.md" />
-    <Content Include="Scripts\ckeditor\plugins\exportpdf\tests\manual\notifications.md" />
-    <Content Include="Scripts\ckeditor\plugins\exportpdf\tests\manual\notificationsasync.md" />
-    <Content Include="Scripts\ckeditor\plugins\exportpdf\tests\manual\paperformat.md" />
-    <Content Include="Scripts\ckeditor\plugins\exportpdf\tests\manual\readonly.md" />
-    <Content Include="Scripts\ckeditor\plugins\exportpdf\tests\manual\stylesheets.md" />
-    <Content Include="Scripts\ckeditor\plugins\exportpdf\tests\manual\tokenfetching.md" />
-    <Content Include="Scripts\ckeditor\plugins\exportpdf\tests\manual\tokentwoeditorscorrect.md" />
-    <Content Include="Scripts\ckeditor\plugins\exportpdf\tests\manual\tokentwoeditorswrong.md" />
-    <Content Include="Scripts\ckeditor\plugins\exportpdf\tests\manual\tokenwithouturl.md" />
-    <Content Include="Scripts\ckeditor\plugins\exportpdf\tests\manual\wrongendpoint.md" />
-    <Content Include="Scripts\ckeditor\plugins\html5video\LICENSE" />
-    <Content Include="Scripts\ckeditor\plugins\html5video\README.md" />
-    <Content Include="Scripts\ckeditor\plugins\imageresize\LICENSE.md" />
-    <Content Include="Scripts\ckeditor\plugins\imageresize\README.md" />
-    <Content Include="Scripts\ckeditor\plugins\letterspacing\LICENSE.md" />
-    <Content Include="Scripts\ckeditor\plugins\letterspacing\README.md" />
-    <Content Include="Scripts\ckeditor\plugins\lineheight\LICENSE" />
-    <Content Include="Scripts\ckeditor\plugins\lineheight\README.md" />
-    <Content Include="Scripts\ckeditor\plugins\scayt\CHANGELOG.md" />
-    <Content Include="Scripts\ckeditor\plugins\scayt\LICENSE.md" />
-    <Content Include="Scripts\ckeditor\plugins\scayt\README.md" />
-    <Content Include="Scripts\ckeditor\plugins\slideshow\3rdParty\ad-gallery\ad-gallery.css.patch" />
-    <Content Include="Scripts\ckeditor\plugins\slideshow\3rdParty\ad-gallery\ad-gallery.js.patch" />
-    <Content Include="Scripts\ckeditor\plugins\slideshow\3rdParty\ad-gallery\jquery.ad-gallery.js.bak" />
-    <Content Include="Scripts\ckeditor\plugins\slideshow\dialogs\slideshow.js.bak" />
-    <Content Include="Scripts\ckeditor\plugins\slideshow\dialogs\slideshow.min.js_old" />
-    <Content Include="Scripts\ckeditor\plugins\slideshow\README.md" />
-    <Content Include="Scripts\ckeditor\plugins\wsc\LICENSE.md" />
-    <Content Include="Scripts\ckeditor\plugins\wsc\README.md" />
-    <Content Include="Scripts\ckeditor\README.md" />
-    <Content Include="Scripts\ckeditor\skins\icy_orange\readme.md" />
-    <Content Include="Scripts\ckeditor\skins\moono-lisa\readme.md" />
-    <Content Include="Scripts\ckeditor\skins\moonocolor\readme.md" />
-    <Content Include="Scripts\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
-    <Content Include="Scripts\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Scripts\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Scripts\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Scripts\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Scripts\esm\popper-utils.js.map" />
-    <Content Include="Scripts\esm\popper-utils.min.js.map" />
-    <Content Include="Scripts\esm\popper.js.map" />
-    <Content Include="Scripts\esm\popper.min.js.map" />
-    <Content Include="Scripts\index.js.flow" />
-    <Content Include="Scripts\jquery-3.6.1.min.map" />
-    <Content Include="Scripts\jquery-3.6.1.slim.min.map" />
-    <Content Include="Content\adminSite.less" />
-    <Content Include="Content\login.less" />
-    <Content Include="Content\style.scss" />
-    <None Include="compilerconfig.json" />
-    <None Include="compilerconfig.json.defaults">
-      <DependentUpon>compilerconfig.json</DependentUpon>
-    </None>
-    <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
-    <Content Include="Scripts\ckeditor\build-config.js" />
-    <Content Include="Scripts\ckeditor\ckeditor.js" />
-    <Content Include="Scripts\ckeditor\config.js" />
-    <Content Include="Scripts\ckeditor\contents.css" />
+    <Content Include="Scripts\ckeditor\CHANGES.md" />
     <Content Include="Scripts\ckeditor\lang\en.js" />
     <Content Include="Scripts\ckeditor\lang\vi.js" />
+    <Content Include="Scripts\ckeditor\LICENSE.md" />
     <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\a11yhelp.js" />
     <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\af.js" />
     <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\ar.js" />
@@ -810,6 +772,7 @@
     <Content Include="Scripts\ckeditor\plugins\wsc\skins\moono-lisa\wsc.css" />
     <Content Include="Scripts\ckeditor\plugins\youtube\images\icon-hdpi.png" />
     <Content Include="Scripts\ckeditor\plugins\youtube\images\icon.png" />
+    <Content Include="Scripts\ckeditor\README.md" />
     <Content Include="Scripts\ckeditor\skins\icy_orange\bold.png" />
     <Content Include="Scripts\ckeditor\skins\icy_orange\dialog.css" />
     <Content Include="Scripts\ckeditor\skins\icy_orange\dialog_ie.css" />
@@ -880,15 +843,7 @@
     <Content Include="Scripts\ckeditor\skins\moonocolor\images\lock.png" />
     <Content Include="Scripts\ckeditor\skins\moonocolor\images\refresh.png" />
     <Content Include="Scripts\ckeditor\skins\moonocolor\images\spinner.gif" />
-    <Content Include="Scripts\ckeditor\styles.js" />
-    <Content Include="Scripts\ckeditor\user-config.js" />
     <Content Include="Scripts\ckeditor\vendor\promise.js" />
-    <Content Include="Scripts\ckfinder\changelog.txt" />
-    <Content Include="Scripts\ckfinder\ckfinder.html" />
-    <Content Include="Scripts\ckfinder\ckfinder.js" />
-    <Content Include="Scripts\ckfinder\ckfinder_v1.js" />
-    <Content Include="Scripts\ckfinder\config.ascx" />
-    <Content Include="Scripts\ckfinder\config.js" />
     <Content Include="Scripts\ckfinder\core\connector\aspx\connector.aspx" />
     <Content Include="Scripts\ckfinder\core\connector\aspx\lang\bg.xml" />
     <Content Include="Scripts\ckfinder\core\connector\aspx\lang\ca.xml" />
@@ -1204,11 +1159,9 @@
     <Content Include="Scripts\ckfinder\help\pl\files\suggestions.html" />
     <Content Include="Scripts\ckfinder\help\pl\files\toc.html" />
     <Content Include="Scripts\ckfinder\help\pl\index.html" />
-    <Content Include="Scripts\ckfinder\install.txt" />
     <Content Include="Scripts\ckfinder\lang\en.js" />
     <Content Include="Scripts\ckfinder\lang\vi.js" />
     <Content Include="Scripts\ckfinder\lang\_translationstatus.txt" />
-    <Content Include="Scripts\ckfinder\license.txt" />
     <Content Include="Scripts\ckfinder\plugins\dummy\lang\en.js" />
     <Content Include="Scripts\ckfinder\plugins\dummy\lang\pl.js" />
     <Content Include="Scripts\ckfinder\plugins\dummy\plugin.js" />
@@ -1476,6 +1429,92 @@
     <Content Include="Scripts\ckfinder\skins\v1\richcombo.css" />
     <Content Include="Scripts\ckfinder\skins\v1\skin.js" />
     <Content Include="Scripts\ckfinder\skins\v1\uipanel.css" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\index.js.flow" />
+    <Content Include="Scripts\jquery-3.6.1.min.map" />
+    <Content Include="Scripts\jquery-3.6.1.slim.min.map" />
+    <Content Include="Content\adminSite.less" />
+    <Content Include="Content\login.less" />
+    <Content Include="Content\style.scss" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <Content Include="Scripts\ckeditor\plugins\accordionList\LICENSE" />
+    <Content Include="Scripts\ckeditor\plugins\accordionList\README.md" />
+    <Content Include="Scripts\ckeditor\plugins\base64image\LICENSE.md" />
+    <Content Include="Scripts\ckeditor\plugins\base64image\README.md" />
+    <Content Include="Scripts\ckeditor\plugins\btgrid\bower.json" />
+    <Content Include="Scripts\ckeditor\plugins\btgrid\README.md" />
+    <Content Include="Scripts\ckeditor\plugins\ckawesome\fontawesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Scripts\ckeditor\plugins\ckawesome\fontawesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Scripts\ckeditor\plugins\ckawesome\fontawesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Scripts\ckeditor\plugins\ckawesome\fontawesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Scripts\ckeditor\plugins\ckawesome\fontawesome\fonts\FontAwesome.otf" />
+    <Content Include="Scripts\ckeditor\plugins\collapsibleItem\LICENSE" />
+    <Content Include="Scripts\ckeditor\plugins\collapsibleItem\README.md" />
+    <Content Include="Scripts\ckeditor\plugins\exportpdf\CHANGELOG.md" />
+    <Content Include="Scripts\ckeditor\plugins\exportpdf\LICENSE.md" />
+    <Content Include="Scripts\ckeditor\plugins\exportpdf\README.md" />
+    <Content Include="Scripts\ckeditor\plugins\exportpdf\tests\manual\configfilename.md" />
+    <Content Include="Scripts\ckeditor\plugins\exportpdf\tests\manual\emptyeditor.md" />
+    <Content Include="Scripts\ckeditor\plugins\exportpdf\tests\manual\integration.md" />
+    <Content Include="Scripts\ckeditor\plugins\exportpdf\tests\manual\integrations\easyimage.md" />
+    <Content Include="Scripts\ckeditor\plugins\exportpdf\tests\manual\notifications.md" />
+    <Content Include="Scripts\ckeditor\plugins\exportpdf\tests\manual\notificationsasync.md" />
+    <Content Include="Scripts\ckeditor\plugins\exportpdf\tests\manual\paperformat.md" />
+    <Content Include="Scripts\ckeditor\plugins\exportpdf\tests\manual\readonly.md" />
+    <Content Include="Scripts\ckeditor\plugins\exportpdf\tests\manual\stylesheets.md" />
+    <Content Include="Scripts\ckeditor\plugins\exportpdf\tests\manual\tokenfetching.md" />
+    <Content Include="Scripts\ckeditor\plugins\exportpdf\tests\manual\tokentwoeditorscorrect.md" />
+    <Content Include="Scripts\ckeditor\plugins\exportpdf\tests\manual\tokentwoeditorswrong.md" />
+    <Content Include="Scripts\ckeditor\plugins\exportpdf\tests\manual\tokenwithouturl.md" />
+    <Content Include="Scripts\ckeditor\plugins\exportpdf\tests\manual\wrongendpoint.md" />
+    <Content Include="Scripts\ckeditor\plugins\html5video\LICENSE" />
+    <Content Include="Scripts\ckeditor\plugins\html5video\README.md" />
+    <Content Include="Scripts\ckeditor\plugins\imageresize\LICENSE.md" />
+    <Content Include="Scripts\ckeditor\plugins\imageresize\README.md" />
+    <Content Include="Scripts\ckeditor\plugins\letterspacing\LICENSE.md" />
+    <Content Include="Scripts\ckeditor\plugins\letterspacing\README.md" />
+    <Content Include="Scripts\ckeditor\plugins\lineheight\LICENSE" />
+    <Content Include="Scripts\ckeditor\plugins\lineheight\README.md" />
+    <Content Include="Scripts\ckeditor\plugins\scayt\CHANGELOG.md" />
+    <Content Include="Scripts\ckeditor\plugins\scayt\LICENSE.md" />
+    <Content Include="Scripts\ckeditor\plugins\scayt\README.md" />
+    <Content Include="Scripts\ckeditor\plugins\slideshow\3rdParty\ad-gallery\ad-gallery.css.patch" />
+    <Content Include="Scripts\ckeditor\plugins\slideshow\3rdParty\ad-gallery\ad-gallery.js.patch" />
+    <Content Include="Scripts\ckeditor\plugins\slideshow\3rdParty\ad-gallery\jquery.ad-gallery.js.bak" />
+    <Content Include="Scripts\ckeditor\plugins\slideshow\dialogs\slideshow.js.bak" />
+    <Content Include="Scripts\ckeditor\plugins\slideshow\dialogs\slideshow.min.js_old" />
+    <Content Include="Scripts\ckeditor\plugins\slideshow\README.md" />
+    <Content Include="Scripts\ckeditor\plugins\wsc\LICENSE.md" />
+    <Content Include="Scripts\ckeditor\plugins\wsc\README.md" />
+    <Content Include="Scripts\ckeditor\skins\icy_orange\readme.md" />
+    <Content Include="Scripts\ckeditor\skins\moono-lisa\readme.md" />
+    <Content Include="Scripts\ckeditor\skins\moonocolor\readme.md" />
+    <Content Include="Scripts\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
+    <Content Include="Scripts\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Scripts\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Scripts\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Scripts\jquery-3.7.1.intellisense.js" />
+    <Content Include="Scripts\ckeditor\build-config.js" />
+    <Content Include="Scripts\ckeditor\ckeditor.js" />
+    <Content Include="Scripts\ckeditor\config.js" />
+    <Content Include="Scripts\ckeditor\contents.css" />
+    <Content Include="Scripts\ckeditor\styles.js" />
+    <Content Include="Scripts\ckeditor\user-config.js" />
+    <Content Include="Scripts\ckfinder\changelog.txt" />
+    <Content Include="Scripts\ckfinder\ckfinder.html" />
+    <Content Include="Scripts\ckfinder\ckfinder.js" />
+    <Content Include="Scripts\ckfinder\ckfinder_v1.js" />
+    <Content Include="Scripts\ckfinder\config.ascx" />
+    <Content Include="Scripts\ckfinder\config.js" />
+    <Content Include="Scripts\ckfinder\install.txt" />
+    <Content Include="Scripts\ckfinder\license.txt" />
     <Content Include="Scripts\ckfinder\translations.txt" />
     <Content Include="Scripts\daterangepicker.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
@@ -1704,7 +1743,6 @@
     <Content Include="Views\Home\ArticleCategory.cshtml" />
     <Content Include="Views\Home\ArticleHot.cshtml" />
     <Content Include="Views\Home\ArticleDetail.cshtml" />
-    <Content Include="taxinoibai.bak" />
     <Content Include="Views\Home\Form.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -1746,6 +1784,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202509201646105_init.resx">
       <DependentUpon>202509201646105_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202509220344140_contact.resx">
+      <DependentUpon>202509220344140_contact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202509220356166_contact-edit.resx">
+      <DependentUpon>202509220356166_contact-edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202509230508167_fix-contact.resx">
+      <DependentUpon>202509230508167_fix-contact.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
