@@ -320,6 +320,7 @@
     <Content Include="images\configs\2025\09\22\logo-taxinoibainet-141.png" />
     <Content Include="images\upload\images\logo-nam-anh-goc-01-360.png" />
     <Content Include="images\upload\_thumbs\Images\logo-nam-anh-goc-01-360.png" />
+    <Content Include="robots.txt" />
     <Content Include="Scripts\aos.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -1655,6 +1656,7 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\waypoints.min.js" />
+    <Content Include="sitemap.xml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

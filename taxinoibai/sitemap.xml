@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<sitemap>
+		<loc>https://datxenoibai.vn/sitemap/articles.xml</loc>
+		<lastmod>2025-09-24T00:00:00+00:00</lastmod>
+	</sitemap>
+	<sitemap>
+		<loc>https://datxenoibai.vn/sitemap/article-categories.xml</loc>
+		<lastmod>2025-09-24T00:00:00+00:00</lastmod>
+	</sitemap>
+	<sitemap>
+		<loc>https://datxenoibai.vn/sitemap/article-images.xml</loc>
+		<lastmod>2025-09-24T00:00:00+00:00</lastmod>
+	</sitemap>
+</sitemapindex>
