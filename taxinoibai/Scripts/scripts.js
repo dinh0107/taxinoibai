@@ -99,13 +99,8 @@ $('#btnCheckPrice').on('click', function () {
 $('#btnConfirmBooking').on('click', function (e) {
     e.preventDefault();
     var $form = $(this).closest('form');
-    //var name = $('#nameInput').val().trim();
     var phone = $('#phoneInput').val().trim();
 
-    //if (name === '' || phone === '') {
-    //    alert('Vui lòng nhập Họ và tên và Số điện thoại');
-    //    return;
-    //}
     var stops = [];
     $('#stopPointsContainer').find('input').each(function () {
         var val = $(this).val().trim();
@@ -155,14 +150,14 @@ function homeJs() {
         autoplaySpeed: 3000,
         arrows: false,
     });
-    $('.slide-fb').slick({
-        slidesToShow: 1,
-        infinite: true,
-        dots: true,
-        autoplay: false,
-        autoplaySpeed: 3000,
-        arrows: false,
-    });
+    //$('.slide-fb').slick({
+    //    slidesToShow: 1,
+    //    infinite: true,
+    //    dots: true,
+    //    autoplay: false,
+    //    autoplaySpeed: 3000,
+    //    arrows: false,
+    //});
 
 
 
@@ -352,6 +347,21 @@ function autoComplate() {
     const lat = 21.028511;
     const lng = 105.804817;
     const radius = 50000;
+    let fromLatLng = null; 
+    let toLatLng = null;
+    $(document).ready(function () {
+        const defaultDescription = $("#diemDen").val(); // “Nội bài”
+        $.getJSON(`https://rsapi.goong.io/Place/AutoComplete?api_key=${API_KEY}&input=${encodeURIComponent(defaultDescription)}&location=${lat},${lng}&radius=${radius}`, function (data) {
+            if (data.predictions && data.predictions.length > 0) {
+                const placeId = data.predictions[0].place_id;
+                $.getJSON(`https://rsapi.goong.io/Place/Detail?place_id=${placeId}&api_key=${API_KEY}`, function (res) {
+                    const loc = res.result.geometry.location;
+                    toLatLng = loc.lat + "," + loc.lng;
+                    console.log("Điểm đến mặc định (Nội bài):", toLatLng);
+                });
+            }
+        });
+    });
 
     $(document).on("input", ".autocomplete-input", function () {
         const $input = $(this);
@@ -393,8 +403,30 @@ function autoComplate() {
         $input.val(description);
 
         $.getJSON(`https://rsapi.goong.io/Place/Detail?place_id=${placeId}&api_key=${API_KEY}`, function (data) {
-            const loc = data.result.geometry.location;
-            console.log("Đã chọn:", description, "Lat:", loc.lat, "Lng:", loc.lng);
+            const loc = data.result.geometry.location; 
+
+            if ($input.attr('id') === 'diemDi') {
+                fromLatLng = loc.lat + "," + loc.lng;
+                console.log("Điểm đi:", fromLatLng);
+            } else if ($input.attr('id') === 'diemDen') {
+                toLatLng = loc.lat + "," + loc.lng;
+                console.log("Điểm đến:", toLatLng);
+            }
+
+            if (fromLatLng && toLatLng) {
+                getDistance(fromLatLng, toLatLng);
+            }
         });
     }
+    function getDistance(origin, destination) {
+        $.getJSON(`https://rsapi.goong.io/Direction?origin=${origin}&destination=${destination}&vehicle=car&api_key=${API_KEY}`, function (res) {
+            if (res.routes && res.routes.length > 0) {
+                const leg = res.routes[0].legs[0];
+                const distance = leg.distance.text; // Ví dụ: "25.4 km"
+                const duration = leg.duration.text; // Ví dụ: "35 phút"
+                console.log("Khoảng cách:", distance, "Thời gian:", duration);
+            }
+        });
+    }
+
 }

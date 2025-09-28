@@ -29,7 +29,8 @@
                     <span>Điểm đến</span>
                 </div>
                 <div class="left-form autocomplete-container">
-                    @Html.TextBoxFor(a => a.To, new { @placeholder = "Điểm đến", @id = "diemDen", Value = "Nội bài" })
+                    @Html.TextBoxFor(a => a.To, new { @placeholder = "Điểm đến", @id = "diemDen", Value = "Nội bài", @class = "autocomplete-input" })
+                    <div id="autocompleteList" class="autocomplete-list"></div>
                     <small class="text-danger">@Html.ValidationMessageFor(a => a.To)</small>
                 </div>
             </div>

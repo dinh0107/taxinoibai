@@ -978,6 +978,7 @@ a, a:hover {
     margin-right: 25px;
     font-size: 14px;
     margin-bottom: 0;
+    min-width: 146px;
 
     &:before {
         content: '';
@@ -1005,7 +1006,14 @@ a, a:hover {
     z-index: 0;
     margin: 6px 0;
 }
+.marquee{
+    height:400px;
+    overflow:hidden;
+    img{
+        width:100%;
 
+    }
+}
 .ct .name {
     background: #fff;
     padding: 6px 8px;

@@ -10,8 +10,6 @@
     {
         ViewBag.ImageShare = Request.Url?.GetLeftPart(UriPartial.Authority) + Path.Combine("/images/configs/", share);
     }
-
-
 }
 
 <section class="banner" id="form">
@@ -269,7 +267,6 @@
 <section class="page-section">
     <div class="container">
         <h2 class="title">Tại sao nên chọn dịch vụ của chúng tôi?</h2>
-
         <div class="box-info">
             @foreach (var item in Model.Banners.Where(a => a.GroupId == 2))
             {
@@ -321,7 +318,7 @@
                                 <a class="c-img" href="@Url.Action("ArticleDetail", new { url = mainItem.Url })" title="@mainItem.Subject">
                                     @if (mainItem.Image != null)
                                     {
-                                        <img class="lazyload" data-src="@Path.Combine("/images/articles/", mainItem.Image)" src="~/Content/images/img-main/base64.gif" alt="@mainItem.Subject">
+                                        <img class="lazyload main-img" data-src="@Path.Combine("/images/articles/", mainItem.Image)" src="~/Content/images/img-main/base64.gif" alt="@mainItem.Subject">
                                     }
                                 </a>
                                 <h3 class="title-a">@mainItem.Subject</h3>
@@ -332,7 +329,7 @@
                             @foreach (var item in subItems)
                             {
                                 <p>
-                                    <a href="@Url.Action("ArticleDetail", new {url = item.Url})" class="name">@item.Subject</a>
+                                    <a data-img="@Path.Combine("/images/articles/", item.Image)" data-name="@item.Subject" class="name">@item.Subject</a>
                                     <a class="price" href="#form">Đặt xe</a>
                                 </p>
                             }
@@ -348,19 +345,12 @@
 <section class="page-section overflow-hidden">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 pt-5">
+            <div class="col-md-6">
                 <h2 class="title">Khách hàng đánh giá chúng tôi ra sao ? </h2>
-                <div class="slide-fb">
+                <div class="marquee">
                     @foreach (var item in Model.Banners.Where(a => a.GroupId == 5))
                     {
-                        <div class="item">
-                            <div class="info flex-column align-items-center">
-                                <img data-src="@Path.Combine("/images/banners/", item.Image)" alt="@item.BannerName" class="lazyload" src="~/Content/images/img-main/base64.gif">
-                                <p class="name">@item.BannerName</p>
-                                <div class="info">@item.Slogan</div>
-                                <div>@Html.Raw(item.Content)</div>
-                            </div>
-                        </div>
+                        <img data-src="@Path.Combine("/images/banners/", item.Image)" alt="@item.BannerName" class="lazyload" src="~/Content/images/img-main/base64.gif">
                     }
                 </div>
             </div>
@@ -410,12 +400,21 @@
         </div>
     </div>
 </section>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css"  />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" />
 @section scripts{
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+    <script src="~/Scripts/jquery.marquee.min.js"></script>
     <script>
         homeJs();
         autoComplate()
+        $('.marquee').marquee({
+            speed: 100,
+            gap: 0,
+            delayBeforeStart: 0,
+            direction: 'up',
+            duplicated: true,
+            pauseOnHover: true,
+        });
         $('.datetimepicker').datetimepicker({
             dateFormat: "D-M-Y H:i",
             minDate: "today"
@@ -434,18 +433,29 @@
                 const $row = $(this).closest('.faq-row');
                 const $answer = $row.find('.a');
                 const $icon = $(this).find('.fa');
-
-                // đóng tất cả trước (nếu muốn accordion chỉ mở 1 cái)
-                // $('.faq-box .a').not($answer).slideUp();
-                // $('.faq-box .fa').not($icon).removeClass('fa-chevron-up').addClass('fa-chevron-down');
-
-                // toggle câu trả lời
                 $answer.slideToggle();
 
-                // đổi icon
                 $icon.toggleClass('fa-chevron-down fa-chevron-up');
             });
         });
+
+        $(document).on('click', '.ct .name', function () {
+            var imgUrl = $(this).data('img');   // lấy đường dẫn ảnh
+            var name = $(this).data('name');    // lấy tên
+
+            // tìm đúng khối way chứa phần tử đang click
+            var $way = $(this).closest('.way');
+
+            // thay ảnh trong khối đó
+            $way.find('.img .main-img')
+                .attr('data-src', imgUrl)
+                .attr('src', imgUrl);
+
+            // thay tiêu đề trong khối đó
+            $way.find('.img .title-a').text(name);
+        });
+
+
 
     </script>
 }
