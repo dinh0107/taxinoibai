@@ -161,6 +161,10 @@
     <Compile Include="Migrations\202509230508167_fix-contact.Designer.cs">
       <DependentUpon>202509230508167_fix-contact.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202509290623203_add-null.cs" />
+    <Compile Include="Migrations\202509290623203_add-null.Designer.cs">
+      <DependentUpon>202509290623203_add-null.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Article.cs" />
@@ -639,6 +643,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202509230508167_fix-contact.resx">
       <DependentUpon>202509230508167_fix-contact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202509290623203_add-null.resx">
+      <DependentUpon>202509290623203_add-null.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

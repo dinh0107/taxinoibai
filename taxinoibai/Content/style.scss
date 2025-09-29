@@ -979,8 +979,9 @@ a, a:hover {
     font-size: 14px;
     margin-bottom: 0;
     min-width: 146px;
-
-    &:before {
+    clip-path: polygon(0 0, 88% 0, 100% 100%, 0% 100%);
+    padding-right: 36px;
+    /*&:before {
         content: '';
         width: 0;
         height: 0;
@@ -989,7 +990,7 @@ a, a:hover {
         position: absolute;
         top: 0;
         left: 146px;
-    }
+    }*/
 }
 
 .ct p {
@@ -1017,6 +1018,7 @@ a, a:hover {
 .ct .name {
     background: #fff;
     padding: 6px 8px;
+    cursor:pointer;
 }
 
 .ct .price {
@@ -2028,5 +2030,23 @@ footer {
     .autocomplete-container {
         position: relative;
         width: 100%;
+    }
+
+    .box-article article {
+        flex-direction: column;
+    }
+
+    .box-article article img {
+        width: 100%;
+        height: 15.438rem;
+    }
+
+    .body-relate {
+        margin-top: .625rem;
+        margin-left: 0 !important;
+    }
+
+    .btn-color {
+        display: none;
     }
 }

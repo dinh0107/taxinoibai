@@ -157,7 +157,7 @@ namespace taxinoibai.Controllers
             _unitOfWork.Save();
 
             var subject = "Email liên hệ từ website: " + Request.Url?.Host;
-
+            var refunTime = model.WaitingTime != null ? model.WaitingTime?.ToString("dd/MM/yyyy HH:mm") : "Không có";
             var body = $@"
                 <table width='600' cellpadding='0' cellspacing='0' style='font-family:Arial,sans-serif;font-size:14px;color:#333;border:1px solid #e5e5e5;'>
                   <tr>
@@ -175,7 +175,7 @@ namespace taxinoibai.Controllers
                       <p><strong>Loại xe:</strong> {model.TypeCar}</p>
                       <p><strong>Điểm dừng:</strong> {model.StopPoints}</p>
                       <p><strong>Thời gian đón:</strong> {model.PickUpTime.ToString("dd/MM/yyyy HH:mm")}</p>
-                      <p><strong>Thời gian về:</strong> {model.WaitingTime.ToString("dd/MM/yyyy HH:mm")}</p>
+                      <p><strong>Thời gian về:</strong> {refunTime}</p>
                       <hr style='border:none;border-top:1px solid #e5e5e5;margin:15px 0;'/>
                       <p style='font-size:12px;color:#888;'>Đây là hệ thống gửi email tự động, vui lòng không phản hồi lại email này.</p>
                     </td>

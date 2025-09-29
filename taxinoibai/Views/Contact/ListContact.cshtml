@@ -84,6 +84,8 @@
                         <tbody>
                             @foreach (var contact in Model.Contacts)
                             {
+
+                                var refunTime = contact.WaitingTime?.ToString("dd/MM/yyyy") ?? "Không có";
                                 <tr data-id="@contact.Id">
                                     <td>@contact.CreateDate.ToString("dd/MM/yyyy HH:mm")</td>
                                     <td>
@@ -97,16 +99,12 @@
                                         {
                                             @:Đặt 2 chiều
                                             <br />
-                                            @: Thời gian về : @contact.WaitingTime.ToString("dd/MM/yyyy")
+                                            @: Thời gian về : @refunTime
                                         }
                                         @if (contact.Bill)
                                         {
                                             @:Yêu cầu hóa đơn
                                             <br />
-                                        }
-                                        @if (contact.StopPoints != null)
-                                        {
-                                            @:Điểm dừng : @contact.StopPoints
                                         }
                                     </td>
                                     <td>@contact.From</td>

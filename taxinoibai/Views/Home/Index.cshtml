@@ -52,7 +52,7 @@
 </section>
 
 
-<section class="page-section">
+<section class="page-section" id="price-table">
     <h2 class="title">bảng giá xe đi Hà Nội - Nội Bài </h2>
     <div class="container">
         <div class="d-flex justify-content-center">
@@ -330,7 +330,7 @@
                             {
                                 <p>
                                     <a data-img="@Path.Combine("/images/articles/", item.Image)" data-name="@item.Subject" class="name">@item.Subject</a>
-                                    <a class="price" href="#form">Đặt xe</a>
+                                    <a class="price" href="@config.Zalo">Đặt xe</a>
                                 </p>
                             }
                         </div>
@@ -367,9 +367,9 @@
                                         <i class="fa fa-chevron-down"></i>
                                     </div>
                                 </div>
-                                <p class="a mt-3" style="display: none; font-size:14px">
-                                    @item.Slogan
-                                </p>
+                                <div class="a mt-3" style="display: none; font-size:14px">
+                                    @Html.Raw(item.Content)
+                                </div>
                             </div>
                         }
                     </div>
@@ -439,21 +439,19 @@
             });
         });
 
-        $(document).on('click', '.ct .name', function () {
-            var imgUrl = $(this).data('img');   // lấy đường dẫn ảnh
-            var name = $(this).data('name');    // lấy tên
+        $(document).on('mouseenter', '.ct .name', function () {
+            var imgUrl = $(this).data('img');  
+            var name = $(this).data('name');   
 
-            // tìm đúng khối way chứa phần tử đang click
             var $way = $(this).closest('.way');
 
-            // thay ảnh trong khối đó
             $way.find('.img .main-img')
                 .attr('data-src', imgUrl)
                 .attr('src', imgUrl);
 
-            // thay tiêu đề trong khối đó
             $way.find('.img .title-a').text(name);
         });
+
 
 
 

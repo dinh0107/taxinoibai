@@ -12,8 +12,8 @@ namespace taxinoibai.Models
         public string To { get; set; }
         [Display(Name = "Ngày đi")]
         public DateTime FromDate { get; set; } = DateTime.Now;
-        [Display(Name = "Thời gian chờ")]
-        public DateTime WaitingTime { get; set; }
+        [Display(Name = "Thời gian về")]
+        public DateTime? WaitingTime { get; set; }
         [Display(Name = "2 chiều")]
         public bool Twoways { get; set; }
         [Display(Name = "Hóa đơn")]
